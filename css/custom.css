@@ -1,0 +1,35 @@
+/* ==================================
+   VIP包房加密插件 UI 深度美化
+================================== */
+/* 让所有加密区域的字体继承 Fluid 主题的优美字体 */
+#hbe-security, .hbe-button, .hbe-input {
+  font-family: inherit !important;
+}
+
+/* 美化那个丑陋的蓝底按钮 (包含解锁和重新加密按钮) */
+.hbe-button {
+  background-color: var(--board-bg-color, #2d3748) !important; /* 适配夜间模式的深色底 */
+  color: var(--text-color, #fff) !important;
+  border: 1px solid var(--primary-color, #3b82f6) !important; /* 加一圈骚气的发光边框 */
+  border-radius: 8px !important;
+  padding: 8px 20px !important;
+  font-size: 1rem !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important; /* 丝滑的动画过渡 */
+}
+
+/* 按钮鼠标悬浮时的特效 */
+.hbe-button:hover {
+  background-color: var(--primary-color, #3b82f6) !important;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* 把“Encrypt again”文字暴力替换成中文 (利用伪元素) */
+#hbe-return-btn {
+  font-size: 0 !important; /* 隐藏原本的英文 */
+}
+#hbe-return-btn::after {
+  content: "重新上锁" !important; /* 替换成中文 */
+  font-size: 1rem !important;
+}
