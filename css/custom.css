@@ -1,35 +1,53 @@
 /* ==================================
-   VIP包房加密插件 UI 深度美化
+   VIP包房加密插件 UI 终极“贴纸”覆盖法
 ================================== */
-/* 让所有加密区域的字体继承 Fluid 主题的优美字体 */
-#hbe-security, .hbe-button, .hbe-input {
-  font-family: inherit !important;
-}
 
-/* 美化那个丑陋的蓝底按钮 (包含解锁和重新加密按钮) */
+/* 1. 把原版按钮变成一个透明的“骨架” */
 .hbe-button {
-  background-color: var(--board-bg-color, #2d3748) !important; /* 适配夜间模式的深色底 */
-  color: var(--text-color, #fff) !important;
-  border: 1px solid var(--primary-color, #3b82f6) !important; /* 加一圈骚气的发光边框 */
-  border-radius: 8px !important;
-  padding: 8px 20px !important;
-  font-size: 1rem !important;
-  cursor: pointer !important;
-  transition: all 0.3s ease !important; /* 丝滑的动画过渡 */
+  position: relative !important;
+  background: transparent !important;
+  border: none !important;
+  /* 用下面这行替换掉原来的 color: transparent */
+  font-size: 0 !important; /* 物理暴击：把原版英文字号强行变成0，让它彻底消失！ */
+  min-width: 120px !important;
+  min-height: 40px !important;
+  padding: 0 !important;
+  box-shadow: none !important;
 }
 
-/* 按钮鼠标悬浮时的特效 */
-.hbe-button:hover {
-  background-color: var(--primary-color, #3b82f6) !important;
+/* 3. 制作一张完美的“贴纸”盖在骨架上 */
+.hbe-button::after {
+  content: "重新上锁" !important; /* 默认文字 */
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important; /* 宽屏覆盖 */
+  height: 100% !important; /* 高度覆盖 */
+  background: #2d3748 !important; /* 我们的高级深色底 */
+  color: #fff !important; /* 白字 */
+  border: 1px solid #3b82f6 !important;
+  border-radius: 8px !important;
+  
+  /* 用 Flex 布局让文字绝对居中，专治各种竖排乱码 */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  
+  font-size: 1rem !important;
+  font-family: inherit !important;
+  transition: all 0.3s ease !important;
+  z-index: 99 !important; /* 极高层级，保证挡住下面的一切 */
+  box-sizing: border-box !important;
+}
+
+/* 4. 悬浮发光特效直接加在贴纸上 */
+.hbe-button:hover::after {
+  background: #3b82f6 !important;
   box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4) !important;
   transform: translateY(-2px) !important;
 }
 
-/* 把“Encrypt again”文字暴力替换成中文 (利用伪元素) */
-#hbe-return-btn {
-  font-size: 0 !important; /* 隐藏原本的英文 */
-}
-#hbe-return-btn::after {
-  content: "重新上锁" !important; /* 替换成中文 */
-  font-size: 1rem !important;
+/* 5. 智能判断状态：如果界面里有密码输入框，贴纸就变成“验证解锁” */
+#hexo-blog-encrypt:has(input) .hbe-button::after {
+  content: "验证解锁" !important;
 }
