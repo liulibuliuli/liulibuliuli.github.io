@@ -71,6 +71,9 @@ Fluid.plugins = {
     jQuery.fancybox.defaults.hash = false;
     jQuery('.fancybox').fancybox({
       loop   : true,
+      clickSlide  : 'close',
+      clickContent : 'close',
+      clickOutside : 'close',
       helpers: {
         overlay: {
           locked: false

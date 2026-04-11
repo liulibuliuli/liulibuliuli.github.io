@@ -68,14 +68,17 @@
 }
 
 /* Fluid 加载后会自动用 a.fancybox 包裹 img，我们直接统一接管样式 */
-.fluid-custom-gallery > img, 
-.fluid-custom-gallery a.fancybox {
+  .fluid-custom-gallery > img,
+  .fluid-custom-gallery a.fancybox,
+  .fluid-custom-gallery > a {
   display: block !important;
   width: 100% !important;
   margin: 0 !important;
   border-radius: 12px !important;
   overflow: hidden !important;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1) !important;
+   text-decoration: none !important;
+   cursor: zoom-in !important;
   aspect-ratio: 1 / 1 !important; /* 核心：强制裁切为绝美正方形 */
 }
 
